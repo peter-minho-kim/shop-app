@@ -9,6 +9,7 @@ import {
   TouchableNativeFeedback,
   Platform
 } from 'react-native';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 import Colors from '../../constants/Colors';
 
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     height: '60%',
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     overflow: 'hidden'
   },
@@ -83,10 +84,12 @@ const styles = StyleSheet.create({
     padding: 10
   },
   title: {
+    fontFamily: 'open-sans-bold',
     fontSize: 18,
-    marginVertical: 4
+    marginVertical: 2
   },
   price: {
+    fontFamily: 'open-sans',
     fontSize: 14,
     color: '#888'
   },
