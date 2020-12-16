@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   ScrollView,
@@ -26,6 +26,16 @@ const EditProductScreen = (props) => {
   const [description, setDescription] = useState(
     editedProduct ? editedProduct.description : ''
   );
+
+  // useCallBack ensures that this function isn't recreated
+  // every time the component rerenders, thereby avoiding an infinite loop
+  const submitHandler = useCallback(() => {
+    console.log('submitting');
+  }, []);
+
+  useEffect(() => {
+    props.navigation.setParams({ submit: submitHandler });
+  }, [submitHandler]); // submitHandler never changes and only gets executed once ^
 
   return (
     <ScrollView>
@@ -70,6 +80,8 @@ const EditProductScreen = (props) => {
 };
 
 EditProductScreen.navigationOptions = (navData) => {
+  const submitFn = navData.navigation.getParam('submit');
+
   return {
     headerTitle: navData.navigation.getParam('productId')
       ? 'Edit Product'
@@ -82,7 +94,7 @@ EditProductScreen.navigationOptions = (navData) => {
             iconName={
               Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
             }
-            onPress={() => {}}
+            onPress={submitFn}
           />
         </HeaderButtons>
       );
