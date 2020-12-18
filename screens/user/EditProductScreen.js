@@ -181,8 +181,6 @@ const EditProductScreen = (props) => {
               label="Price"
               errorText="Please enter a valid price"
               keyboardType="decimal-pad"
-              autoCapitalize="sentences"
-              autoCorrect
               returnKeyType="next"
               onInputChange={inputChangeHandler}
               required
